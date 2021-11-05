@@ -1,26 +1,25 @@
-const { response } = require('express');
-const express = require('express');
-const puppeteer = require('puppeteer');
+const axios = require("axios");
+const cheerio = require("cheerio");
+const { prop } = require("cheerio/lib/api/attributes");
+const { fstat } = require("fs");
 
-const server = express();
-const port = 3000;
+const url = "https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops";
 
+async function getNotbooks() {
+    const { data } = await axios.get(url);
+    const $ = cheerio.load(data);
 
-server.get('/', (req, res) => {
-    response.send('Hello world!');
-});
+    const list = [];
+    $(".thumbnail div").each((i, elem) => {
+        const description = $(elem).find(".description").text().replace("\n", "");
+        const title = $(elem).find(".title").text().replace("\n", "");
+        const price = $(elem).find(".price h4").text().replace("\n", "");
+        const rating = $(elem).find(".ratings p").text().replace("\n", "");
 
+            obj = { description, title, price, rating };
+            list.push(obj);
+    });
+    console.log(list);
+}
 
-server.listen(port, () => {
-    console.log(`acesse em htpp://localhost.com:${port}`)
-});
-
-
-;(async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto('https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops');
-  await page.puppeteer({ path: 'example.png' });
-
-  await browser.close();
-})();
+getNotbooks();
