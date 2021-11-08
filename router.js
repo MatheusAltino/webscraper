@@ -1,14 +1,15 @@
-const express = require('express')
-const app = express()
-const { filter } = require('cheerio/lib/api/traversing')
-const controller = require('./controller')
 const { response } = require('express')
-const router = express.Router
+const express = require('express')
+const router = express.Router()
+const controller = require('./controller.js')
 
-app.get('/', (req, res) => {
-  res.send("server running")
+router.get('/', (req, res) => {
+  return res.send({message: "Welcome to my webScraper API!"})
 })
 
-app.get('/lenovo', (req, res) => {
-    res.json(response.json)
+router.get('/lenovo', (req, res) => {
+    return res.download('./response.json')
 })
+
+
+module.exports = router

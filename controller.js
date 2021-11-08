@@ -22,6 +22,7 @@ module.exports = async function getNotbooks() {
         obj = { title, description, price }
         list.push(obj)
     });
+    
     //filter by title
     const filterTitle = list.filter(p => p.title.includes("Lenovo"))
     
