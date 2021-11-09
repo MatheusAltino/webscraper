@@ -25,10 +25,14 @@ module.exports = async function getNotbooks() {
     
     //filter by title
     const filterTitle = list.filter(p => p.title.includes("Lenovo"))
+
+    //filter by description
+    const filterDescription = filterTitle.filter(p => p.description.includes("Lenovo"))
+
     
     //writing in a json file
-    const updateData = JSON.stringify(filterTitle, null, 2)
+    const updateData = JSON.stringify(filterDescription, null, 2)
     fs.writeFileSync('./response.json', updateData, 'utf-8')
 
-    console.log(filterTitle)
+    console.log(filterDescription)
 }();

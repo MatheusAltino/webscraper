@@ -8,4 +8,4 @@ app.use('/', router)
 
 
 const port = 4000
-app.listen(port)
+app.listen(process.env.PORT || port)
