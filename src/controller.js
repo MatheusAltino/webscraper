@@ -5,14 +5,14 @@ const axios = require("axios")
 const cheerio = require("cheerio")
 const fs = require("fs")
 
-const url = "https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops";
+const url = "https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops"
 
 module.exports = async function getNotbooks() {
     const { data } = await axios.get(url);
-    const $ = cheerio.load(data);
+    const $ = cheerio.load(data)
     const list = [];
 
-    //Seach in DOM
+    //Search in DOM
     $(".thumbnail div").each((i, elem) => {
         //const image = $(elem).find(".img-responsive img")
         const title = $(elem).find(".title").text().trim().replace("\n", "")
@@ -21,7 +21,7 @@ module.exports = async function getNotbooks() {
 
         obj = { title, description, price }
         list.push(obj)
-    });
+    })
     
     //filter by title
     const filterTitle = list.filter(p => p.title.includes("Lenovo"))
@@ -32,7 +32,7 @@ module.exports = async function getNotbooks() {
     
     //writing in a json file
     const updateData = JSON.stringify(filterDescription, null, 2)
-    fs.writeFileSync('./response.json', updateData, 'utf-8')
+    fs.writeFileSync('./data/response.json', updateData, 'utf-8')
 
     console.log(filterDescription)
-}();
+}()
