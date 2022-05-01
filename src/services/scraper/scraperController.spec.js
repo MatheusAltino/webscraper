@@ -1,15 +1,20 @@
-const { default: axios } = require('axios')
-const { data } = require('cheerio/lib/api/attributes')
-const getNotbooks = require('./scraperController')
+const {getNotebooks} = require('./scraperController')
 
 describe('Scraper Tests', () => {
-    it('Data has load', () => {
+    it('Should Data has load', async () => {
+        const data = await getNotebooks();        
+    expect(data).toEqual(200)
+    })/*
+    it('Should obj has completed', () => {
 
-    expect()     
-    })
-    
-    it('', () => {
-    
     expect()
     })
+    it('Should filterTitle', () => {
+
+    expect()
+    })
+    it('Should filterDescription', () => {
+
+    expect()
+    })*/
 })
