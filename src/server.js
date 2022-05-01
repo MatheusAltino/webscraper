@@ -1,9 +1,7 @@
-const app = require('./app')
+const app = require('./app.js')
 
-const port = process.env.PORT || 4000
-
-
-const server = app.listen(PORT, () => {console.log(`Example app listening at http://localhost:4000`)})
+const PORT = process.env.PORT || 3333
+const server = app.listen(PORT)
 
 
 module.exports = server

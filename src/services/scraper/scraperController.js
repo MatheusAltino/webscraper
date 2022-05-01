@@ -1,16 +1,16 @@
 const express = require('express')
-const server = require('./server')
-const router = require('./router')
+const server = require('../../server')
+const router = require('../../router')
 const axios = require("axios")
 const cheerio = require("cheerio")
 const fs = require("fs")
 
-const url = "https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops"
+const url = "https://webscraper.io/test-sites/e-commerce/allinone/computers/laptops";
 
-module.exports = async function getNotbooks() {
-    const { data } = await axios.get(url);
+module.exports = async function getNotebooks() {
+    const { data } = await axios.get(url)
     const $ = cheerio.load(data)
-    const list = [];
+    const list = []
 
     //Search in DOM
     $(".thumbnail div").each((i, elem) => {
@@ -32,7 +32,7 @@ module.exports = async function getNotbooks() {
     
     //writing in a json file
     const updateData = JSON.stringify(filterDescription, null, 2)
-    fs.writeFileSync('./data/response.json', updateData, 'utf-8')
-
+    fs.writeFileSync('src/services/scraper/data/response.json', updateData, 'utf-8')
+    
     console.log(filterDescription)
-}()
+}();
