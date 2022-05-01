@@ -2,10 +2,10 @@
   "name": "webscraper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "test": "jest",
+    "start": "nodemon src/server.js"
   },
   "author": "Matheus Altino",
   "license": "ISC",
@@ -15,10 +15,10 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "puppeteer": "^11.0.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "jest": "^28.0.3",
     "nodemon": "^2.0.14"
   }
 }
